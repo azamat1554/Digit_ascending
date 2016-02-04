@@ -5,26 +5,29 @@ package com.azamat;
  */
 public class DigitAscendign {
     public static void main(String[] args) {
-        long N = 1_000_000l;
+        long N = 1_000_000_000_000l;
 
 
-        for (long i = 1; i < N; i++) {
+        long time = System.currentTimeMillis();
+        for (long i = 1l; i < N; i++) {
             if (checkNumber(i)) System.out.println(i);
         }
+        System.out.println("\n time: " + (System.currentTimeMillis() - time));
     }
 
     //метод, в котором число проверяется на заданное условие
     static boolean checkNumber(long number) {
         long integer = number;
-        int rest, prev = 9;
+        long rest;
+        long prev = 9;
 
         do {
-            rest = (int) integer % 10; //остаток от деления
+            rest = integer % 10; //остаток от деления
             if (rest <= prev) { //проверка - является ли разряд не больше предыдущего
                 prev = rest;
             } else return false; //если нет - выход из метода
 
-            integer = (int) integer / 10; //целая часть от деления
+            integer = integer / 10; //целая часть от деления
             if ((integer < 10) && (integer <= prev)) { //когда от исходного числа number остается один разряд (т.е. страрший разряд),
                 return true;                           //проверяем является ли он не больше предыдущего
             }
